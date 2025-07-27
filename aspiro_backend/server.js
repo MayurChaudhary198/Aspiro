@@ -6,20 +6,32 @@ require('dotenv').config();
 const port = process.env.PORT || 3000;
 const connectDB = require("./db");
 
+//Middleware
+app.use(express.json());
+
 const authRoutes = require('./routes/authRoutes');
+app.use('/api', authRoutes);
+
+const userRoutes = require('./routes/userRoutes');
+app.use('/api/users', userRoutes);
+
+const jobRoutes = require('./routes/jobRoutes');
+app.use('/api/jobs', jobRoutes);
+
+const careerRoutes = require("./routes/careerRoutes");
+app.use("/api/career", careerRoutes);
 
 //DB Connection
 connectDB();
 
-//Middleware
-app.use(express.json());
+
 
 //Routes
 app.get("/",(req,res)=>{
     res.send("Hello From Server");
 });
 
-app.use('/api', authRoutes);
+
 
 
 

@@ -38,7 +38,6 @@ const loginUser = async (req, res) => {
             return res.status(400).json({ message: 'User not found. Please register first.' });
         }
 
-        console.log('Comparing:', password, existingUser.password);
         const isMatch = await bcrypt.compare(password, existingUser.password);
         if(!isMatch){
             return res.status(400).json({ message: 'Invalid credentials' });
@@ -68,4 +67,6 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, loginUser };
+
+
+module.exports = { registerUser, loginUser};
